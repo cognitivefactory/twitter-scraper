@@ -1,9 +1,9 @@
 # Twitter Scraper
 
 [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
-[![GitHub license](https://img.shields.io/github/license/cognitivefactory/twitter-scraper)](https://github.com/cognitivefactory/twitter-scraper/blob/main/LICENSE)
+<!-- [![GitHub license](https://img.shields.io/github/license/cognitivefactory/twitter-scraper)](https://github.com/cognitivefactory/twitter-scraper/blob/main/LICENSE)
 [![GitHub commits](https://badgen.net/github/commits/cognitivefactory/twitter-scraper)](https://GitHub.com/cognitivefactory/twitter-scraper/commit/)
-[![GitHub latest commit](https://badgen.net/github/last-commit/cognitivefactory/twitter-scraper)](https://gitHub.com/cognitivefactory/twitter-scraper/commit/)
+[![GitHub latest commit](https://badgen.net/github/last-commit/cognitivefactory/twitter-scraper)](https://gitHub.com/cognitivefactory/twitter-scraper/commit/) -->
 [![Maintenance](https://img.shields.io/badge/maintained%3F-yes-green.svg)](https://GitHub.com/cognitivefactory/twitter-scraper/graphs/commit-activity)
 
 [![Python application](https://github.com/cognitivefactory/twitter-scraper/actions/workflows/python-app.yml/badge.svg)](https://github.com/cognitivefactory/twitter-scraper/actions/workflows/python-app.yml)
