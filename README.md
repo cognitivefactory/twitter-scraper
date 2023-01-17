@@ -1,14 +1,14 @@
 # Twitter Scraper
 
 [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
-[![GitHub license](https://img.shields.io/github/license/ThomasByr/Twitter-Scraper)](https://github.com/ThomasByr/Twitter-Scraper/blob/master/LICENSE)
-[![GitHub commits](https://badgen.net/github/commits/ThomasByr/Twitter-Scraper)](https://GitHub.com/ThomasByr/Twitter-Scraper/commit/)
-[![GitHub latest commit](https://badgen.net/github/last-commit/ThomasByr/Twitter-Scraper)](https://gitHub.com/ThomasByr/Twitter-Scraper/commit/)
-[![Maintenance](https://img.shields.io/badge/maintained%3F-yes-green.svg)](https://GitHub.com/ThomasByr/Twitter-Scraper/graphs/commit-activity)
+[![GitHub license](https://img.shields.io/github/license/cognitivefactory/twitter-scraper)](https://github.com/cognitivefactory/twitter-scraper/blob/main/LICENSE)
+[![GitHub commits](https://badgen.net/github/commits/cognitivefactory/twitter-scraper)](https://GitHub.com/cognitivefactory/twitter-scraper/commit/)
+[![GitHub latest commit](https://badgen.net/github/last-commit/cognitivefactory/twitter-scraper)](https://gitHub.com/cognitivefactory/twitter-scraper/commit/)
+[![Maintenance](https://img.shields.io/badge/maintained%3F-yes-green.svg)](https://GitHub.com/cognitivefactory/twitter-scraper/graphs/commit-activity)
 
-[![Python application](https://github.com/ThomasByr/Twitter-Scraper/actions/workflows/python-app.yml/badge.svg)](https://github.com/ThomasByr/Twitter-Scraper/actions/workflows/python-app.yml)
-[![Pylint](https://github.com/ThomasByr/Twitter-Scraper/actions/workflows/pylint.yml/badge.svg)](https://github.com/ThomasByr/Twitter-Scraper/actions/workflows/pylint.yml)
-[![GitHub version](https://badge.fury.io/gh/ThomasByr%2FTwitter-Scraper.svg)](https://github.com/ThomasByr/Twitter-Scraper)
+[![Python application](https://github.com/cognitivefactory/twitter-scraper/actions/workflows/python-app.yml/badge.svg)](https://github.com/cognitivefactory/twitter-scraper/actions/workflows/python-app.yml)
+[![Pylint](https://github.com/cognitivefactory/twitter-scraper/actions/workflows/pylint.yml/badge.svg)](https://github.com/cognitivefactory/twitter-scraper/actions/workflows/pylint.yml)
+[![GitHub version](https://badge.fury.io/gh/cognitivefactory%2Ftwitter-scraper.svg)](https://github.com/cognitivefactory/twitter-scraper)
 [![Author](https://img.shields.io/badge/author-@ThomasByr-blue)](https://github.com/ThomasByr)
 
 1. [✏️ Setup](#️-setup)
