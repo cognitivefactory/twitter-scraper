@@ -35,7 +35,7 @@
 
 # We follow Semantic Versioning (https://semver.org/)
 _MAJOR_VERSION = '0'
-_MINOR_VERSION = '6'
+_MINOR_VERSION = '1'
 _PATCH_VERSION = '9'
 
 # When building releases, we can update this value on the release branch to
