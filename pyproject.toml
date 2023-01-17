@@ -1,0 +1,21 @@
+[build-system]
+requires      = ["setuptools>=65.5"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "twitter_scraper"
+version = "0.6.9"
+authors = [
+  { name="Thomas Byr", email="tbouyer2000@gmail.com" },
+]
+description = "A Python package for scraping Twitter data."
+readme = "README.md"
+requires-python = ">=3.10.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/cognitivefactory/twitter-scraper"
+"Bug Tracker" = "https://github.com/cognitivefactory/twitter-scraper/issues"
