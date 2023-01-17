@@ -16,7 +16,7 @@
 
 ## ✏️ Setup
 
-> **Note:** This project is currently under development. It is not yet ready for production.
+> **Note** This project is currently under development. It is not yet ready for production.
 
 Please install first the required packages with the following command:
 
@@ -88,6 +88,13 @@ gantt
   <summary>  Beta first minor release (click here to expand) </summary>
 
 **v0.1.0** first release
+
+-  added `twitter_scraper` module
+-  added some tests
+-  made `python -m build` work
+-  the notebook is now working properly (even without the `twitter_scraper` pip installed)
+-  added a `requirements.txt` file
+-  the workflows are now working properly
 
 </details>
 
