@@ -1,0 +1,9 @@
+ipykernel >= 6.20      # run notebooks
+tweepy[async] >= 4.12  # use twitter API w/ async
+
+python-dotenv >= 0.21  # load environment variables from .env file
+
+numpy >= 1.24          # numerical computing
+
+pytest >= 7.2          # testing
+pylint >= 2.15         # linting
