@@ -85,16 +85,13 @@ gantt
 ```
 
 <details>
-  <summary>  Beta first minor release (click here to expand) </summary>
+  <summary>  Stable Version 1 (click here to expand) </summary>
 
-**v0.1.0** first release
+**v1.0** first stable release
 
--  added `twitter_scraper` module
--  added some tests
--  made `python -m build` work
--  the notebook is now working properly (even without the `twitter_scraper` pip installed)
--  added a `requirements.txt` file
--  the workflows are now working properly
+- `collection.abc` instead of `typing` (deprecated)
+- lowered the requirements
+- min supported python version is now 3.10.6
 
 </details>
 
