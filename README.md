@@ -41,7 +41,7 @@ BEARER_TOKEN =
 Oh god! Please don't... Still, make sure you have `pytest` installed and run the following command:
 
 ```ps1
-pytest .\twitter-scraper\
+pytest .\twitter_scraper\
 ```
 
 You can also use the vscode UI to run the tests.
