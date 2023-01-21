@@ -6,6 +6,7 @@ __all__ = ['SearchQuery']
 class SearchQuery:
 
   def __init__(self, orig: 'SearchQuery' = None) -> None:
+
     match orig:
       case None:
         self.subject: str = None
@@ -22,6 +23,7 @@ class SearchQuery:
         self.is_question: bool = False
         self.is_positive: bool = False
         self.is_negative: bool = False
+
       case _:
         self.subject = orig.subject
         self.keywords = orig.keywords.copy()
