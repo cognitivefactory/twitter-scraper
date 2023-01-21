@@ -29,8 +29,24 @@ class TwitterScraper:
     end_date = query.end_date if query.end_date is not None else None
     limit = query.limit if query.limit is not None else 100
 
+    assert query.subject is not None or len(query.keywords) > 0, 'Query must have a subject or keywords'
+
     dated_query = True
-    final_query = f'{query.subject} lang:{lang}'
+    final_query = ''
+
+    if query.subject is not None:
+      final_query += f'"{query.subject}"'
+    if len(query.keywords) > 0:
+      final_query += f' {" OR ".join(query.keywords)}'
+    if query.is_question:
+      final_query += ' ?'
+    elif query.is_positive:
+      final_query += ' :)'
+    elif query.is_negative:
+      final_query += ' :('
+
+    final_query += f'#{" #".join(query.hashtags)}' if len(query.hashtags) > 0 else ''
+    final_query += f' lang:{lang}'
 
     r: tweepy.Response = None
     match start_date, end_date:

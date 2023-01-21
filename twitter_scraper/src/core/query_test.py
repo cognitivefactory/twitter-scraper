@@ -22,7 +22,7 @@ def test_copy() -> None:
   p1 = p.with_lang('en')
   assert p.lang is None
   assert p1.lang == 'en'
-  p2 = p1.copy()
+  p2 = SearchQuery(p1)
   assert p2.lang == 'en'
 
 
