@@ -33,3 +33,8 @@
 - `collection.abc` instead of `typing` (deprecated)
 - lowered the requirements
 - min supported python version is now 3.10.6
+
+**v1.1** more queries and less storage
+
+- encoded `tweet.content` into `bytes` for storage
+- added retweet and reply selectors to `SearchQuery`
