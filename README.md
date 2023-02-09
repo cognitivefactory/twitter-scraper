@@ -82,6 +82,9 @@ gantt
     v0.1 : 2023-01-16, 1d
     v0.2 :             2d
     v0.3 :             2d
+
+    section stable Versions
+    v1   : 2023-01-19, 9d
 ```
 
 <details>
@@ -93,10 +96,20 @@ gantt
 - lowered the requirements
 - min supported python version is now 3.10.6
 
+**v1.1** more queries and less storage
+
+- encoded `tweet.content` into `bytes` for storage
+- added retweet and reply selectors to `SearchQuery`
+
 </details>
 
 ## 🐛 Bugs & TODO
 
 **known bugs** (final correction patch version) [see Issues](https://github.com/?)
 
+- `tweet.date` is always `None` when scraping (stored as `0`)
+
 **todo** (first implementation version)
+
+- [x] encode `tweet.content` into `bytes` for storage
+- [ ] should add `tweet.date` back in when scraping
