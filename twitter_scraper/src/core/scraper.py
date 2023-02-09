@@ -38,6 +38,10 @@ class TwitterScraper:
       final_query += f'"{query.subject}"'
     if len(query.keywords) > 0:
       final_query += f' {" OR ".join(query.keywords)}'
+
+    final_query += f' {" @".join(query.tags)}' if len(query.tags) > 0 else ''
+    final_query += f'#{" #".join(query.hashtags)}' if len(query.hashtags) > 0 else ''
+
     if query.is_question:
       final_query += ' ?'
     elif query.is_positive:
@@ -45,7 +49,11 @@ class TwitterScraper:
     elif query.is_negative:
       final_query += ' :('
 
-    final_query += f'#{" #".join(query.hashtags)}' if len(query.hashtags) > 0 else ''
+    if query.is_retweet:
+      final_query += ' is:retweet'
+    elif query.is_reply:
+      final_query += ' is:reply'
+
     final_query += f' lang:{lang}'
 
     r: tweepy.Response = None
@@ -69,4 +77,4 @@ class TwitterScraper:
     assert r is not None, 'No response from Twitter API'
     assert isinstance(r, tweepy.Response), 'Invalid response from Twitter API'
     assert isinstance(r.data, list), 'Invalid response data from Twitter API'
-    return [Tweet(t.text, t.id) for t in r.data]
+    return [Tweet(t.text, t.id, t.created_at) for t in r.data]
