@@ -113,3 +113,4 @@ gantt
 
 - [x] encode `tweet.content` into `bytes` for storage
 - [ ] should add `tweet.date` back in when scraping
+- [ ] add large search queries
