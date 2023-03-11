@@ -69,6 +69,7 @@ script/
 
 # VS
 .vs/
+.vscode/
 
 # Environments
 .env
