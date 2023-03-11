@@ -41,7 +41,7 @@ BEARER_TOKEN =
 Oh god! Please don't... Still, make sure you have `pytest` installed and run the following command:
 
 ```ps1
-pytest .\twitter-scraper\
+pytest .\twitter_scraper\
 ```
 
 You can also use the vscode UI to run the tests.
@@ -82,19 +82,24 @@ gantt
     v0.1 : 2023-01-16, 1d
     v0.2 :             2d
     v0.3 :             2d
+
+    section stable Versions
+    v1   : 2023-01-19, 9d
 ```
 
 <details>
-  <summary>  Beta first minor release (click here to expand) </summary>
+  <summary>  Stable Version 1 (click here to expand) </summary>
 
-**v0.1.0** first release
+**v1.0** first stable release
 
--  added `twitter_scraper` module
--  added some tests
--  made `python -m build` work
--  the notebook is now working properly (even without the `twitter_scraper` pip installed)
--  added a `requirements.txt` file
--  the workflows are now working properly
+- `collection.abc` instead of `typing` (deprecated)
+- lowered the requirements
+- min supported python version is now 3.10.6
+
+**v1.1** more queries and less storage
+
+- encoded `tweet.content` into `bytes` for storage
+- added retweet and reply selectors to `SearchQuery`
 
 </details>
 
@@ -102,4 +107,11 @@ gantt
 
 **known bugs** (final correction patch version) [see Issues](https://github.com/?)
 
+- `tweet.date` is always `None` when scraping (stored as `0`)
+
 **todo** (first implementation version)
+
+- [x] encode `tweet.content` into `bytes` for storage
+- [ ] should add `tweet.date` back in when scraping
+- [ ] add large search queries
+- [ ] _a posteriori_ tweet inspection

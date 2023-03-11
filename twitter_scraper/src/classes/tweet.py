@@ -5,25 +5,25 @@ __all__ = ['Tweet']
 
 class Tweet:
 
-  EOT = 0xB16B00B51BADB002  # end of Tweet marker
+  EOT = 0xB16B00B5_1BADB002  # end of Tweet marker
   WORD_SIZE = 16  # size of word in bytes
 
   def __init__(self, content: str, tweet_id: np.int64 = 0, tweet_date: np.int64 = 0) -> None:
     self.content = content
     self.id = tweet_id
-    self.date = tweet_date
+    self.date = 0 if tweet_date is None else tweet_date
 
   def __str__(self) -> str:
-    return self.content
+    return f'id:\n{self.id}\ndate:\n{self.date}\ncontent:\n{self.content}'
 
   def __repr__(self) -> str:
     return self.__str__()
 
   def __eq__(self, other: 'Tweet') -> bool:
-    return self.id == other.id
+    return self.id == other.id if self.id != 0 and other.id != 0 else self.content == other.content
 
   def __hash__(self) -> int:
-    return hash(self.id)
+    return hash(self.id) if self.id != 0 else hash(self.content)
 
   def write(self, path: str) -> None:
     """

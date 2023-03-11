@@ -1,2 +1,2 @@
-from .params import *
+from .query import *
 from .scraper import *

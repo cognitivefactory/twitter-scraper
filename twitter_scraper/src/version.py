@@ -34,8 +34,8 @@
 """Define Twitter-Scraper version information."""
 
 # We follow Semantic Versioning (https://semver.org/)
-_MAJOR_VERSION = '0'
-_MINOR_VERSION = '1'
+_MAJOR_VERSION = '1'
+_MINOR_VERSION = '6'
 _PATCH_VERSION = '9'
 
 # When building releases, we can update this value on the release branch to
@@ -47,9 +47,9 @@ _VERSION_SUFFIX = ''
 
 # Example, '0.4.0-dev'
 __version__ = '.'.join([
-    _MAJOR_VERSION,
-    _MINOR_VERSION,
-    _PATCH_VERSION,
+  _MAJOR_VERSION,
+  _MINOR_VERSION,
+  _PATCH_VERSION,
 ])
 if _VERSION_SUFFIX:
   __version__ = f'{__version__}-{_VERSION_SUFFIX}'
