@@ -47,9 +47,9 @@ _VERSION_SUFFIX = ''
 
 # Example, '0.4.0-dev'
 __version__ = '.'.join([
-    _MAJOR_VERSION,
-    _MINOR_VERSION,
-    _PATCH_VERSION,
+  _MAJOR_VERSION,
+  _MINOR_VERSION,
+  _PATCH_VERSION,
 ])
 if _VERSION_SUFFIX:
   __version__ = f'{__version__}-{_VERSION_SUFFIX}'
