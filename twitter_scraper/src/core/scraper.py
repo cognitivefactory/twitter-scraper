@@ -19,6 +19,7 @@ class TwitterScraper:
     # api_key = os.getenv('API_KEY')
     # api_key_secret = os.getenv('API_KEY_SECRET')
     bearer_token = os.getenv('BEARER_TOKEN')
+    assert bearer_token is not None, 'No bearer token found'
 
     self._client = tweepy.Client(bearer_token=bearer_token)
 
