@@ -25,6 +25,22 @@ class Tweet:
     """
     return self.__content
 
+  @property
+  def id(self) -> np.int64:
+    """
+    get id of tweet\\
+    this is read-only
+    """
+    return self.__id
+
+  @property
+  def date(self) -> np.int64:
+    """
+    get date of tweet\\
+    this is read-only
+    """
+    return self.__date
+
   def __str__(self) -> str:
     return f'id:\n{self.__id}\ndate:\n{self.__date}\ncontent:\n{self.__content}'
 
