@@ -1,4 +1,7 @@
-from typing import Callable
+from typing import Callable, Iterable
+
+from multiprocessing import Pool
+
 import numpy as np
 
 __all__ = ['Tweet']
@@ -13,7 +16,7 @@ class Tweet:
     self.__content = content
     self.__id = tweet_id
     self.__date = 0 if tweet_date is None else tweet_date
-  
+
   @property
   def content(self) -> str:
     """
@@ -60,12 +63,12 @@ class Tweet:
     
     ## Parameters
     ```py
-      path : str
+    >>> path : str
     ```
     
     ## Returns
     ```py
-      list[Tweet]
+    list[Tweet]
     ```
     """
     # read in binary mode
@@ -105,11 +108,34 @@ class Tweet:
 
   def process_content(self, f: Callable[[str], str]) -> None:
     """
-    process tweet content
+    process tweet content in place
     
     ## Parameters
     ```py
-      f : callable[[str], str]
+    >>> f : callable[[str], str]
     ```
     """
     self.__content = f(self.__content)
+
+  @classmethod
+  def process_contents(cls, tweets: Iterable['Tweet'], f: Callable[[str], str], threads: int = 4) -> None:
+    """
+    process multiple tweet contents in place
+
+    ## Parameters
+    ```py
+    >>> tweets : list[Tweet]
+    ```
+    ```py
+    >>> f : callable[[str], str]
+    ```
+    ```py
+    >>> threads : int, (optional)
+    ```
+    """
+    if threads <= 1:
+      for tweet in tweets:
+        tweet.process_content(f)
+    else:
+      with Pool(threads) as p:
+        p.map(lambda tweet: tweet.process_content(f), tweets)
