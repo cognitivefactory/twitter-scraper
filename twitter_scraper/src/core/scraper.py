@@ -21,7 +21,7 @@ class TwitterScraper:
     bearer_token = os.getenv('BEARER_TOKEN')
     assert bearer_token is not None, 'No bearer token found'
 
-    self._client = tweepy.Client(bearer_token=bearer_token)
+    self.__client = tweepy.Client(bearer_token=bearer_token)
 
 
   def search(self, query: SearchQuery) -> list[Tweet]:
@@ -70,10 +70,10 @@ class TwitterScraper:
 
     if dated_query:
       assert start_date is not None and end_date is not None
-      r = self._client.search_all_tweets(query=final_query, max_results=limit, start_time=start_date, end_time=end_date)
+      r = self.__client.search_all_tweets(query=final_query, max_results=limit, start_time=start_date, end_time=end_date)
     else:
       assert start_date is None and end_date is None
-      r = self._client.search_recent_tweets(query=final_query, max_results=limit)
+      r = self.__client.search_recent_tweets(query=final_query, max_results=limit)
 
     assert r is not None, 'No response from Twitter API'
     assert isinstance(r, tweepy.Response), 'Invalid response from Twitter API'

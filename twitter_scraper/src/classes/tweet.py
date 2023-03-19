@@ -1,3 +1,4 @@
+from typing import Callable
 import numpy as np
 
 __all__ = ['Tweet']
@@ -9,21 +10,29 @@ class Tweet:
   WORD_SIZE = 16  # size of word in bytes
 
   def __init__(self, content: str, tweet_id: np.int64 = 0, tweet_date: np.int64 = 0) -> None:
-    self.content = content
-    self.id = tweet_id
-    self.date = 0 if tweet_date is None else tweet_date
+    self.__content = content
+    self.__id = tweet_id
+    self.__date = 0 if tweet_date is None else tweet_date
+  
+  @property
+  def content(self) -> str:
+    """
+    get content of tweet\\
+    this is read-only
+    """
+    return self.__content
 
   def __str__(self) -> str:
-    return f'id:\n{self.id}\ndate:\n{self.date}\ncontent:\n{self.content}'
+    return f'id:\n{self.__id}\ndate:\n{self.__date}\ncontent:\n{self.__content}'
 
   def __repr__(self) -> str:
     return self.__str__()
 
   def __eq__(self, other: 'Tweet') -> bool:
-    return self.id == other.id if self.id != 0 and other.id != 0 else self.content == other.content
+    return self.__id == other.id if self.__id != 0 and other.id != 0 else self.__content == other.content
 
   def __hash__(self) -> int:
-    return hash(self.id) if self.id != 0 else hash(self.content)
+    return hash(self.__id) if self.__id != 0 else hash(self.__content)
 
   def write(self, path: str) -> None:
     """
@@ -38,9 +47,9 @@ class Tweet:
     # write in binary mode
     with open(path, 'ab') as f:
       # write id, date, content
-      f.write(self.id.to_bytes(siz, 'big'))
-      f.write(self.date.to_bytes(siz, 'big'))
-      f.write(self.content.encode('utf-8'))
+      f.write(self.__id.to_bytes(siz, 'big'))
+      f.write(self.__date.to_bytes(siz, 'big'))
+      f.write(self.__content.encode('utf-8'))
       # write EOT marker
       f.write(Tweet.EOT.to_bytes(siz, 'big'))
 
@@ -68,11 +77,11 @@ class Tweet:
       # remove last empty element
       tweets = tweets[:-1]
       # create Tweet objects
-      tweets = [Tweet._from_bytes(tweet) for tweet in tweets]
+      tweets = [Tweet.__from_bytes(tweet) for tweet in tweets]
       return tweets
 
   @classmethod
-  def _from_bytes(cls, data: bytes) -> 'Tweet':
+  def __from_bytes(cls, data: bytes) -> 'Tweet':
     """
     create Tweet object from bytes
     
@@ -93,3 +102,14 @@ class Tweet:
     content = data[siz * 2:].decode('utf-8')
     # create Tweet object
     return Tweet(content, tweet_id, tweet_date)
+
+  def process_content(self, f: Callable[[str], str]) -> None:
+    """
+    process tweet content
+    
+    ## Parameters
+    ```py
+      f : callable[[str], str]
+    ```
+    """
+    self.__content = f(self.__content)
