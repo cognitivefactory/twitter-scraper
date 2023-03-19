@@ -27,6 +27,7 @@ def tweet_preprocess(
     content: str,
     lowercased: bool = True,
     remove_mentions_and_hastags: bool = True,
+    remove_mentions_and_hastags_symbol: bool = True,
     remove_urls: bool = True,
     remove_emojis: bool = True,
     remove_punctuation: bool = True,
@@ -51,6 +52,11 @@ def tweet_preprocess(
   ```py
   >>> remove_mentions_and_hastags : bool, (optional)
   ```
+  remove all '@' and '#' and following attached word\\
+  defaults to `True`
+  ```py
+  >>> remove_mentions_and_hastags_symbol : bool, (optional)
+  ```
   remove all '@' and '#'\\
   defaults to `True`
   ```py
@@ -66,7 +72,7 @@ def tweet_preprocess(
   ```py
   >>> remove_punctuation : bool, (optional)
   ```
-  remove all punctuation\\
+  remove all punctuation (`!"#$%&\'()*+,-./:;<=>?@[\\]^_{|}~` and backtick)\\
   defaults to `True`
   ```py
   >>> strip : bool, (optional)
@@ -90,9 +96,11 @@ def tweet_preprocess(
 
   if remove_mentions_and_hastags:
     tweet = re.sub(r'[@#]\w+', '', tweet)
+  elif remove_mentions_and_hastags_symbol:
+    tweet = re.sub(r'[@#]', '', tweet)
 
   if remove_urls:
-    tweet = re.sub(r'http\S+', '', tweet)
+    tweet = re.sub(r'\S*https?:\S*', '', tweet)
 
   if remove_emojis:
     tweet = re.sub(EMOJI_PATTERN, '', tweet)
