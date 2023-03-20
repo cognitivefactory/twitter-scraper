@@ -16,12 +16,13 @@ nltk.download("omw-1.4")
 
 
 # tockenizer
-def tokenizer(x: str) -> list[str]:
-  return word_tokenize(x)
+def tokenize(x: str) -> list[str]:
+  return word_tokenize(x, language='english')  # todo: language switch mechanism
 
 
 # spellchecker
-s = SpellChecker(language={'fr'})
+s = SpellChecker(language={'en', 'fr'})
+
 # stemmer and lemmatizer
 ps = PorterStemmer()
 wnl = WordNetLemmatizer()
@@ -155,4 +156,4 @@ def tweet_preprocess(  # pylint: disable=too-many-arguments
   elif apply_lemmatization:
     tweet = ' '.join(wnl.lemmatize(word) for word in tweet.split())
 
-  return tweet if not return_tokens else tokenizer(tweet)
+  return tweet if not return_tokens else tokenize(tweet)
