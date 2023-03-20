@@ -148,7 +148,7 @@ logging-format-style=new
 [MISCELLANEOUS]
 
 # List of note tags to take in consideration, separated by a comma.
-notes=FIXME,XXX,TODO
+notes=fixme,xxx,todo
 
 # Regular expression of note tags to take in consideration.
 #notes-rgx=
@@ -516,7 +516,8 @@ preferred-modules=
 
 # Exceptions that will emit a warning when being caught. Defaults to
 # "Exception"
-overgeneral-exceptions=Exception
+overgeneral-exceptions=builtins.BaseException,
+                       builtins.Exception
 
 
 [TYPING]
