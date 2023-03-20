@@ -83,3 +83,30 @@ def test_strip():
 def test_attempt_spell_correction():
   assert tweet_preprocess("Hello World", lowercased=False, attempt_spell_correction=False) == "Hello World"
   assert tweet_preprocess("Hello World", lowercased=False, attempt_spell_correction=True) == "Hello World"
+
+
+def test_apply_stemming():
+  assert tweet_preprocess("programmer", apply_stemming=False) == "programmer"
+  assert tweet_preprocess("programmer", apply_stemming=True) == "programm"
+
+
+def test_apply_lemmatization():
+  assert tweet_preprocess("programmer", apply_lemmatization=False) == "programmer"
+  assert tweet_preprocess("programmer", apply_lemmatization=True) == "programmer"
+
+
+def test_return_tokens():
+  match tweet_preprocess("Hello World", return_tokens=False):
+    case str(_):
+      pass
+    case _:
+      raise AssertionError("Should be a string")
+  match tweet_preprocess("Hello World", return_tokens=True):
+    case list(l):
+      match l:
+        case [str(_), *_]:
+          pass
+        case _:
+          raise AssertionError("Should be a list of strings")
+    case _:
+      raise AssertionError("Should be a list")
