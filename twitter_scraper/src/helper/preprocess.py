@@ -1,11 +1,30 @@
 import re
 import string
+import nltk
 
 from spellchecker import SpellChecker
 
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer, PorterStemmer
+
 __all__ = ['tweet_preprocess']
 
-s = SpellChecker(language={'en', 'fr'})
+# some nltk stuff (did not investigate)
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download("omw-1.4")
+
+
+# tockenizer
+def tokenizer(x: str) -> list[str]:
+  return word_tokenize(x)
+
+
+# spellchecker
+s = SpellChecker(language={'fr'})
+# stemmer and lemmatizer
+ps = PorterStemmer()
+wnl = WordNetLemmatizer()
 
 EMOJI_PATTERN = re.compile("["
                            "\U0001F1E0-\U0001F1FF"  # flags (iOS)
@@ -23,19 +42,20 @@ EMOJI_PATTERN = re.compile("["
                            "]+")
 
 
-def tweet_preprocess(
+def tweet_preprocess(  # pylint: disable=too-many-arguments
     content: str,
     lowercased: bool = True,
-    remove_mentions_and_hastags: bool = True,
+    remove_mentions_and_hastags: bool = False,
     remove_mentions_and_hastags_symbol: bool = True,
     remove_urls: bool = True,
     remove_emojis: bool = True,
     remove_punctuation: bool = True,
     strip: bool = True,
     attempt_spell_correction: bool = False,
-    # apply_stemming: bool = False,
-    # apply_lemmatization: bool = False,
-) -> str:
+    apply_stemming: bool = False,
+    apply_lemmatization: bool = False,
+    return_tokens: bool = False,
+) -> str | list[str]:
   """
   standard function to preprocess tweets
 
@@ -86,10 +106,26 @@ def tweet_preprocess(
   note that this is a very slow process
   and will replace all whitespace with a single space\\
   defaults to `False`
+  ```py
+  >>> apply_stemming : bool, (optional)
+  ```
+  apply stemming to the content\\
+  defaults to `False`
+  ```py
+  >>> apply_lemmatization : bool, (optional)
+  ```
+  apply lemmatization to the content\\
+  note that this is a slow process and is not compatible with stemming\\
+  defaults to `False`
+  ```py
+  >>> return_tokens : bool, (optional)
+  ```
+  set the return type to a list of tokens\\
+  defaults to `False`
 
   ## Returns
   ```py
-  str : new content
+  str | list[str] : new content
   ```
   """
   tweet = content.lower() if lowercased else content[::]
@@ -114,4 +150,9 @@ def tweet_preprocess(
   if attempt_spell_correction:
     tweet = ' '.join(s.correction(word) for word in tweet.split())
 
-  return tweet
+  if apply_stemming:
+    tweet = ' '.join(ps.stem(word) for word in tweet.split())
+  elif apply_lemmatization:
+    tweet = ' '.join(wnl.lemmatize(word) for word in tweet.split())
+
+  return tweet if not return_tokens else tokenizer(tweet)
