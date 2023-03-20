@@ -80,6 +80,9 @@ If you're looking for something - here's a breakdown of our codebase
 │   │   ├── core/                  # core functionalities
 │   │   │   ├── ...                # some core functionalities
 │   │   │   └── *_test.py          # tests for core functionalities
+│   │   ├── helper/                # core functionalities
+│   │   │   ├── ...                # helper classes, notably the preprocessor
+│   │   │   └── *_test.py          # tests for helper classes
 │   │   ├── __init__.py
 │   │   └── version.py             # version file
 │   ├── __init__.py                # init file
