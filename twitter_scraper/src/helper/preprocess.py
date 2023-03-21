@@ -4,6 +4,8 @@ import string
 from enum import Enum
 from typing_extensions import override
 
+import emoji
+
 import nltk
 from spellchecker import SpellChecker
 
@@ -90,6 +92,7 @@ class TweetPreprocessor:
       remove_mentions_and_hastags_symbol: bool = True,
       remove_urls: bool = True,
       remove_emojis: bool = True,
+      translate_emojis: bool = False,
       remove_punctuation: bool = True,
       strip: bool = True,
       attempt_spell_correction: bool = False,
@@ -130,6 +133,12 @@ class TweetPreprocessor:
     ```
     remove all emojis\\
     defaults to `True`
+    ```py
+    >>> translate_emojis : bool, (optional)
+    ```
+    translate emojis into their meaning\\
+    note that this is not compatible with remove_emojis\\
+    defaults to `False`
     ```py
     >>> remove_punctuation : bool, (optional)
     ```
@@ -181,6 +190,8 @@ class TweetPreprocessor:
 
     if remove_emojis:
       tweet = re.sub(self.EMOJI_PATTERN, '', tweet)
+    elif translate_emojis:
+      tweet = emoji.demojize(tweet, delimiters=('', ''), language='alias')
 
     if remove_punctuation:
       tweet = tweet.translate(str.maketrans('', '', string.punctuation))
@@ -196,4 +207,4 @@ class TweetPreprocessor:
     elif apply_lemmatization:
       tweet = ' '.join(self.__wnl.lemmatize(word) for word in tweet.split())
 
-    return tweet if not return_tokens else self.__tokenize(tweet)
+    return str(tweet) if not return_tokens else self.__tokenize(tweet)

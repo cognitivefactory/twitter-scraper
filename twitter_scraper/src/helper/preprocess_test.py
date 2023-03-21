@@ -70,6 +70,11 @@ def test_remove_emojis():
   assert tp.run("Hello 😊", lowercased=False, remove_emojis=True) == "Hello"
 
 
+def test_translate_emojis():
+  assert tp.run("Hello 😊", lowercased=False, remove_emojis=False, translate_emojis=False) == "Hello 😊"
+  assert tp.run("Hello 😊", lowercased=False, remove_emojis=False, translate_emojis=True) == "Hello blush"
+
+
 def test_remove_punctuation():
   assert tp.run("Hello, World!", lowercased=False, remove_punctuation=False) == "Hello, World!"
   assert tp.run("Hello, World!", lowercased=False, remove_punctuation=True) == "Hello World"
