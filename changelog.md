@@ -46,3 +46,5 @@
 - added `helper` module
 - preprocessor is now a class
 - `TweetPreprocessorLanguage` small enum
+- added `get_tweet_info` method to `TwitterScraper` class
+- `get_tweet_info` method now returns a public `TweetInfo` dataclass
