@@ -114,7 +114,7 @@ class TweetPreprocessor:
     >>> remove_mentions_and_hastags : bool, (optional)
     ```
     remove all '@' and '#' and following attached word\\
-    defaults to `True`
+    defaults to `False`
     ```py
     >>> remove_mentions_and_hastags_symbol : bool, (optional)
     ```
