@@ -36,6 +36,22 @@ BEARER_TOKEN =
 
 ## 💁 More infos and Usage
 
+For a more detailed walkthrough, please refer to the [demo notebook](demo.ipynb).
+
+```py
+from twitter_scraper import *
+
+q: SearchQuery = SearchQuery().with_subject('bbq party')
+                              .with_limit(10)
+                              .with_hashtag('bbq')
+                              .with_hashtag('party')
+s: TwitterScraper = TwitterScraper()
+
+r: list[Tweet] = s.search(q)
+print(tweets[0])
+print(s.get_tweet_info(tweets[0]))
+```
+
 ## 🧪 Testing
 
 Oh god! Please don't... Still, make sure you have `pytest` installed and run the following command:
@@ -96,6 +112,8 @@ gantt
 - added `helper` module
 - preprocessor is now a class
 - `TweetPreprocessorLanguage` small enum
+- added `get_tweet_info` method to `TwitterScraper` class
+- `get_tweet_info` method now returns a public `TweetInfo` dataclass
 
 </details>
 
