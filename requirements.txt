@@ -4,3 +4,5 @@ tweepy[async] >= 4.12  # use twitter API w/ async
 python-dotenv >= 0.21  # load environment variables from .env file
 
 numpy >= 1.24          # numerical computing
+pyspellchecker >= 0.7  # spellcheck
+nltk >= 3.8            # natural language processing

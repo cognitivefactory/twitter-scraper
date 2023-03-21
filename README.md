@@ -85,21 +85,17 @@ gantt
 
     section stable Versions
     v1   : 2023-01-19, 9d
+    v2   : 2023-03-19, d
 ```
 
 <details>
-  <summary>  Stable Version 1 (click here to expand) </summary>
+  <summary>  Stable Version 2 (click here to expand) </summary>
 
-**v1.0** first stable release
+**v2.0** first stable release
 
-- `collection.abc` instead of `typing` (deprecated)
-- lowered the requirements
-- min supported python version is now 3.10.6
-
-**v1.1** more queries and less storage
-
-- encoded `tweet.content` into `bytes` for storage
-- added retweet and reply selectors to `SearchQuery`
+- added `helper` module
+- preprocessor is now a class
+- `TweetPreprocessorLanguage` small enum
 
 </details>
 

@@ -38,3 +38,11 @@
 
 - encoded `tweet.content` into `bytes` for storage
 - added retweet and reply selectors to `SearchQuery`
+
+## Stable Version 2
+
+**v2.0** first stable release
+
+- added `helper` module
+- preprocessor is now a class
+- `TweetPreprocessorLanguage` small enum

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "twitter_scraper"
-version = "1.6.9"
+version = "2.0.1"
 authors = [
   { name="Thomas Byr", email="tbouyer2000@gmail.com" },
 ]
