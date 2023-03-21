@@ -1,14 +1,24 @@
 import os
 import datetime
+from dataclasses import dataclass
 
 import tweepy
+import numpy as np
 
 from dotenv import load_dotenv
 
 from ..classes.tweet import Tweet
 from .query import SearchQuery
 
-__all__ = ['TwitterScraper']
+__all__ = ['TwitterScraper', 'TweetInfo']
+
+
+@dataclass
+class TweetInfo:
+  id: np.int64
+  retweet_count: int
+  reply_count: int
+  like_count: int
 
 
 class TwitterScraper:
@@ -22,6 +32,33 @@ class TwitterScraper:
     assert bearer_token is not None, 'No bearer token found'
 
     self.__client = tweepy.Client(bearer_token=bearer_token)
+
+
+  def get_tweet_info(self, tweet: Tweet | np.int64) -> TweetInfo:
+    tweet_id = tweet if isinstance(tweet, (np.int64, int)) else tweet.id
+
+    r: tweepy.Response = self.__client.get_tweet(tweet_id, expansions='author_id,attachments.poll_ids,attachments.media_keys,geo.place_id,in_reply_to_user_id,referenced_tweets.id,entities.mentions.username,referenced_tweets.id.author_id', tweet_fields='created_at,public_metrics,author_id,attachments,context_annotations,conversation_id,entities,geo,in_reply_to_user_id,lang,possibly_sensitive,referenced_tweets,source,text,withheld', user_fields='created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld', place_fields='contained_within,country,country_code,full_name,geo,id,name,place_type', poll_fields='duration_minutes,end_datetime,id,options,voting_status', media_fields='duration_ms,height,media_key,preview_image_url,type,url,width,public_metrics,non_public_metrics,organic_metrics,promoted_metrics,alt_text')
+
+    assert r is not None, 'No response from Twitter API'
+    assert isinstance(r, tweepy.Response), 'Invalid response from Twitter API'
+
+
+    public_metrics: dict[str, int|str]
+    is_valid = True
+    try:
+      public_metrics = r.data['public_metrics']
+    except KeyError:
+      is_valid = False
+    assert isinstance(public_metrics, dict), 'Invalid public metrics from Twitter API'
+
+    if not is_valid:
+      return TweetInfo(-1, 0, 0, 0)
+
+    return TweetInfo(tweet_id,
+                     public_metrics['retweet_count'],
+                     public_metrics['reply_count'],
+                     public_metrics['like_count'],
+                    )
 
 
   def search(self, query: SearchQuery) -> list[Tweet]:
