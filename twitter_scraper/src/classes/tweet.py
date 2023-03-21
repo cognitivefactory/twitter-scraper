@@ -42,7 +42,7 @@ class Tweet:
     return self.__date
 
   def __str__(self) -> str:
-    return f'id:\n{self.__id}\ndate:\n{self.__date}\ncontent:\n{self.__content}'
+    return self.__content
 
   def __repr__(self) -> str:
     return self.__str__()
