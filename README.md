@@ -21,7 +21,7 @@
 Please install first the required packages with the following command:
 
 ```ps1
-pip install --upgrade -r requirements.txt
+python -m pip install --upgrade -r requirements.txt
 ```
 
 Then you should setup a Twitter developer account and create a new app to get your API keys. You can find more information [here](https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api).
@@ -57,7 +57,7 @@ print(s.get_tweet_info(tweets[0]))
 Oh god! Please don't... Still, make sure you have `pytest` installed and run the following command:
 
 ```ps1
-pytest .\twitter_scraper\
+pytest twitter_scraper
 ```
 
 You can also use the vscode UI to run the tests.
