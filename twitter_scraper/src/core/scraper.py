@@ -61,11 +61,15 @@ class TwitterScraper:
                     )
 
 
-  def search(self, query: SearchQuery) -> list[Tweet]:
+  def search(self, query: SearchQuery) -> set[Tweet]:
     lang = query.lang if query.lang is not None else 'en'
     start_date = query.start_date if query.start_date is not None else None
     end_date = query.end_date if query.end_date is not None else None
+    recent_end_date = query.recent_end_date if query.recent_end_date is not None else None
     limit = query.limit if query.limit is not None else 100
+
+    if recent_end_date is not None:
+      start_date = end_date = None
 
     assert query.subject is not None or len(query.keywords) > 0, 'Query must have a subject or keywords'
 
@@ -110,9 +114,9 @@ class TwitterScraper:
       r = self.__client.search_all_tweets(query=final_query, max_results=limit, start_time=start_date, end_time=end_date)
     else:
       assert start_date is None and end_date is None
-      r = self.__client.search_recent_tweets(query=final_query, max_results=limit)
+      r = self.__client.search_recent_tweets(query=final_query, max_results=limit, end_time=recent_end_date+'T23:59:59Z')
 
     assert r is not None, 'No response from Twitter API'
     assert isinstance(r, tweepy.Response), 'Invalid response from Twitter API'
     assert isinstance(r.data, list), 'Invalid response data from Twitter API'
-    return [Tweet(t.text, t.id, t.created_at) for t in r.data]
+    return set(Tweet(t.text, t.id, t.created_at) for t in r.data)

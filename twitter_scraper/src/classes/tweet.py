@@ -17,6 +17,9 @@ class Tweet:
     self.__id = tweet_id
     self.__date = 0 if tweet_date is None else tweet_date
 
+  def __hash__(self) -> int:
+    return hash(self.__id) if self.__id != 0 else hash(self.__content)
+
   @property
   def content(self) -> str:
     """

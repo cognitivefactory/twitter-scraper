@@ -18,6 +18,7 @@ class SearchQuery:
 
         self.start_date: str = None
         self.end_date: str = None
+        self.recent_end_date: str = None
 
         self.limit: int = None
         self.min_likes: int = None
@@ -70,6 +71,14 @@ class SearchQuery:
 
   def set_end_date(self, year: int, month: int, day: int) -> None:
     self.end_date = f'{year}-{month}-{day}'
+
+  def with_recent_end_date(self, year: int, month: int, day: int) -> 'SearchQuery':
+    new = SearchQuery(self)
+    new.recent_end_date = f'{year}-{month}-{day}'
+    return new
+
+  def set_recent_end_date(self, year: int, month: int, day: int) -> None:
+    self.recent_end_date = f'{year}-{month}-{day}'
 
   def with_limit(self, limit: int) -> 'SearchQuery':
     new = SearchQuery(self)
