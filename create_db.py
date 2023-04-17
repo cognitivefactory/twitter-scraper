@@ -1,6 +1,7 @@
 import os
 from datetime import datetime, timedelta, date
 
+from random import randint
 from unidecode import unidecode
 from time import sleep
 from enum import Enum
@@ -240,7 +241,7 @@ if __name__ == '__main__':
 
   for topic in topics:
     for sentiment in [Sentiment.POSITIVE, Sentiment.NEGATIVE, Sentiment.QUESTION]:
-      sleep(10) # to avoid being banned
+      sleep(randint(3, 10)) # to avoid being banned
       # remove any non filename-friendly chars from topic (for the db file)
       path_db = os.path.join('data', unidecode(topic.lower()) + f'_{sentiment}.bin')
       scrap_by_interval(start_date=start_date, end_date=end_date, interval=1, out=path_db, topic=topic, sentiment=sentiment)
