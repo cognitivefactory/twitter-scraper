@@ -89,14 +89,13 @@ class TwitterScraper:
     elif query.is_reply:
       final_query += ' is:reply'
 
-    final_query += f' lang:{lang}'
-
     if query.is_question:
       final_query += ' ?'
     elif query.is_positive:
       final_query += ' :)'
     elif query.is_negative:
       final_query += ' :('
+    final_query += f' lang:{lang}'
 
     r: tweepy.Response = None
     match start_date, end_date:
