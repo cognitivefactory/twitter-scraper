@@ -84,19 +84,19 @@ class TwitterScraper:
     final_query += f' {" @".join(query.tags)}' if len(query.tags) > 0 else ''
     final_query += f'#{" #".join(query.hashtags)}' if len(query.hashtags) > 0 else ''
 
-    if query.is_question:
-      final_query += ' ?'
-    elif query.is_positive:
-      final_query += ' :)'
-    elif query.is_negative:
-      final_query += ' :('
-
     if query.is_retweet:
       final_query += ' is:retweet'
     elif query.is_reply:
       final_query += ' is:reply'
 
     final_query += f' lang:{lang}'
+
+    if query.is_question:
+      final_query += ' ?'
+    elif query.is_positive:
+      final_query += ' :)'
+    elif query.is_negative:
+      final_query += ' :('
 
     r: tweepy.Response = None
     match start_date, end_date:
