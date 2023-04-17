@@ -7,3 +7,4 @@ numpy >= 1.24          # numerical computing
 pyspellchecker >= 0.7  # spellcheck
 nltk >= 3.8            # natural language processing
 emoji >= 2.2           # emoji support
+unidecode >= 1.3       # convert unicode to ascii
